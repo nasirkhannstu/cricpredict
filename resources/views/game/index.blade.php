@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="row">
+@include('partials._messages')
     <div class="col-md-7">
         <div class="panel panel-default">
             <div class="panel-heading">Create Game</div>
@@ -63,7 +64,7 @@
 
                     {{Form::label('predict_id','Prediction:')}}
                     <select class="form-control" name="predict_id">
-                        <option value="1">sadkj</option>
+                        <option value=1>dsfhbg</option>
                         <option value="2">sadkj</option>
                         <option value="3">sadkj</option>
                     </select>
@@ -82,16 +83,34 @@
                     {{Form::label('des','Post Body:')}}
                     {{Form::textarea('des',null,array('class' => 'form-control'))}}
 
-                    {{Form::submit('Create Post',array('class' => 'btn btn-success btn-lg btn-block','style'=>'margin-top:20px'))}}
+                    {{Form::submit('Create Game',array('class' => 'btn btn-success btn-lg btn-block','style'=>'margin-top:20px'))}}
                 {!! Form::close() !!}
             </div>
         </div>
     </div>
     <div class="col-md-5">
         <div class="panel panel-default">
-            <div class="panel-heading">All Games</div>
+            <div class="panel-heading">All Games ({{count( $games )}})</div>
             <div class="panel-body">
-                
+                <table class="table">
+                    <thead>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        @foreach($games as $game)
+                        <tr>
+                        <td><a href="{{route('game.edit', $game->id) }}">{{ $game->name }}</a></td>
+                        <td>
+                            
+                            {{ Form::open(['route' => ['game.destroy', $game->id], 'method' => 'DELETE']) }}
+                                {{ Form::submit('Delet', ['class' => 'btn btn-danger btn-sm']) }}
+                            {{ Form::close() }}
+                        </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

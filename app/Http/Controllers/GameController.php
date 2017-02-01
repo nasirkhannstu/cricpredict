@@ -15,7 +15,8 @@ class GameController extends Controller
      */
     public function index()
     {
-        return view('game.index');
+        $games = Game::orderBy('id','desc')->paginate(20);
+        return view('game.index')->withGames($games);
     }
 
     /**
@@ -93,7 +94,8 @@ class GameController extends Controller
      */
     public function edit($id)
     {
-        //
+        $game = Game::find($id);
+        return view('game.edit')->withGame($game);
     }
 
     /**
@@ -105,7 +107,42 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($request);
+        //validate the data
+        $this->validate($request, array(
+                'name'          => 'max:255',
+                'teama_id'    => 'integer',
+                'teamb_id'    => 'integer',
+                'stadium_id'    => 'integer',
+                'type_id'    => 'integer',
+                'ampaira_id'    => 'integer',
+                'coach'    => 'integer',
+                'city_id'    => 'integer',
+                'predict_id'    => 'integer',
+                'owned_id'    => 'integer',
+                'image'    => 'image',
+                'des'           => 'required'
+            ));
+        //Store in the database
+        $game = Game::find($id);
+        $game->name = $request->input('name');
+        $game->teama_id = $request->input('teama_id');
+        $game->teamb_id = $request->input('teamb_id');
+        $game->stadium_id = $request->input('stadium_id');
+        $game->type_id = $request->input('type_id');
+        $game->ampaira_id = $request->input('ampaira_id');
+        $game->coach = $request->input('coach');
+        $game->city_id = $request->input('city_id');
+        $game->predict_id = $request->input('predict_id');
+        $game->owned_id = $request->input('owned_id');
+        $game->des = $request->input('des');
+
+        $game->save();
+
+        Session::flash('success','The Game Created successfully!');
+
+        //redirect to another page
+        return redirect()->route('game.index');
     }
 
     /**
