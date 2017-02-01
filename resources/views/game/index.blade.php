@@ -12,73 +12,73 @@
 
                     {{Form::label('name','Game Name:')}}
                     {{Form::text('name',null,array('class' => 'form-control','required'=>'','maxlength'=>'255'))}}
-
+                    <br>
                     {{Form::label('teama_id','Team A Name:')}}
                     <select class="form-control" name="teama_id">
-                        <option value="1">sadkj</option>
-                        <option value="2">sadkj</option>
-                        <option value="3">sadkj</option>
+                        <option value=""></option>
+                        @foreach( $teams as $team)
+                        <option value="{{ $team->id }}">{{ $team->name }}</option>
+                        @endforeach
                     </select>
-
+                    <br>
                     {{Form::label('teamb_id','Team B Name:')}}
                     <select class="form-control" name="teamb_id">
-                        <option value="1">sadkj</option>
-                        <option value="2">sadkj</option>
-                        <option value="3">sadkj</option>
+                        <option value=""></option>
+                        @foreach( $teams as $team)
+                        <option value="{{ $team->id }}">{{ $team->name }}</option>
+                        @endforeach
                     </select>
-
+                    <br>
                     {{Form::label('stadium_id','Stadium Name:')}}
                     <select class="form-control" name="stadium_id">
-                        <option value="1">sadkj</option>
+                        <option value=""></option>
                         <option value="2">sadkj</option>
                         <option value="3">sadkj</option>
                     </select>
-
+                    <br>
                     {{Form::label('type_id','Game Type:')}}
                     <select class="form-control" name="type_id">
+                        <option value=""></option>
                         <option value="1">sadkj</option>
                         <option value="2">sadkj</option>
                         <option value="3">sadkj</option>
                     </select>
-
+                    <br>
                     {{Form::label('ampaira_id','Ampair Name:')}}
                     <select class="form-control" name="ampaira_id">
+                        <option value=""></option>
                         <option value="1">sadkj</option>
                         <option value="2">sadkj</option>
                         <option value="3">sadkj</option>
                     </select>
-
-                    {{Form::label('coach','Coach Name:')}}
-                    <select class="form-control" name="coach">
-                        <option value="1">sadkj</option>
-                        <option value="2">sadkj</option>
-                        <option value="3">sadkj</option>
-                    </select>
-
+                    <br>
                     {{Form::label('city_id','Coach Name:')}}
                     <select class="form-control" name="city_id">
+                        <option value=""></option>
                         <option value="1">sadkj</option>
                         <option value="2">sadkj</option>
                         <option value="3">sadkj</option>
                     </select>
-
+                    <br>
                     {{Form::label('predict_id','Prediction:')}}
                     <select class="form-control" name="predict_id">
+                        <option value=""></option>
                         <option value=1>dsfhbg</option>
                         <option value="2">sadkj</option>
                         <option value="3">sadkj</option>
                     </select>
-
+                    <br>
                     {{Form::label('owned_id','Game Owner:')}}
                     <select class="form-control" name="owned_id">
+                        <option value=""></option>
                         <option value="1">sadkj</option>
                         <option value="2">sadkj</option>
                         <option value="3">sadkj</option>
                     </select>
-
+                    <br>
                     {{Form::label('image','Image:')}}
                     {{Form::file('image')}}
-
+                    <br>
 
                     {{Form::label('des','Post Body:')}}
                     {{Form::textarea('des',null,array('class' => 'form-control'))}}

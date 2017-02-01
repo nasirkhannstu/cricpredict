@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Game;
+use App\Team;
 use Session;
 
 class GameController extends Controller
@@ -16,7 +17,9 @@ class GameController extends Controller
     public function index()
     {
         $games = Game::orderBy('id','desc')->paginate(20);
-        return view('game.index')->withGames($games);
+
+        $teams = Team::all();
+        return view('game.index')->withGames($games)->withTeams($teams);
     }
 
     /**
@@ -43,7 +46,6 @@ class GameController extends Controller
                 'name'          => 'max:255',
                 'teama_id'    => 'integer',
                 'teamb_id'    => 'integer',
-                'stadium_id'    => 'integer',
                 'type_id'    => 'integer',
                 'ampaira_id'    => 'integer',
                 'coach'    => 'integer',
@@ -95,7 +97,13 @@ class GameController extends Controller
     public function edit($id)
     {
         $game = Game::find($id);
-        return view('game.edit')->withGame($game);
+
+        $teams = Team::all();
+        $tms = array();
+        foreach ( $teams as $team ){
+            $tms[$team->id] = $team->name;
+        }
+        return view('game.edit')->withGame($game)->withTeamsa($tms)->withTeamsb($tms);
     }
 
     /**
@@ -116,7 +124,6 @@ class GameController extends Controller
                 'stadium_id'    => 'integer',
                 'type_id'    => 'integer',
                 'ampaira_id'    => 'integer',
-                'coach'    => 'integer',
                 'city_id'    => 'integer',
                 'predict_id'    => 'integer',
                 'owned_id'    => 'integer',
@@ -131,7 +138,6 @@ class GameController extends Controller
         $game->stadium_id = $request->input('stadium_id');
         $game->type_id = $request->input('type_id');
         $game->ampaira_id = $request->input('ampaira_id');
-        $game->coach = $request->input('coach');
         $game->city_id = $request->input('city_id');
         $game->predict_id = $request->input('predict_id');
         $game->owned_id = $request->input('owned_id');

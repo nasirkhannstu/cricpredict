@@ -10,12 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// perfect analysis for taking your decission
 
 Route::get('/', function () {
     return view('welcome');
 });
 						//  Admin Panel Route
 Route::resource('admin/game', 'GameController');
+Route::resource('admin/team', 'TeamController');
 
 
 
