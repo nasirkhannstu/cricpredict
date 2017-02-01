@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Game;
 use App\Team;
 use Session;
+use Image;
+use Storage;
 
 class GameController extends Controller
 {
@@ -68,6 +70,15 @@ class GameController extends Controller
         $game->predict_id = $request->predict_id;
         $game->owned_id = $request->owned_id;
         $game->des = $request->des;
+
+        if($request->hasFile('image')){
+           $image = $request->file('image');
+           $filename = $request->name . '-' . time() . '.' . $image->getClientOriginalExtension();
+           $location = public_path('images/games/'. $filename);
+           Image::make($image)->save($location);
+
+           $game->image = $filename;
+        }
 
         $game->save();
 
@@ -143,9 +154,20 @@ class GameController extends Controller
         $game->owned_id = $request->input('owned_id');
         $game->des = $request->input('des');
 
+        if($request->hasFile('image')){
+           $image = $request->file('image');
+           $filename = $request->name . '-' . time() . '.' . $image->getClientOriginalExtension();
+           $location = public_path('images/games/'. $filename);
+           Image::make($image)->save($location);
+
+           $oldfilename = $game->image;
+           $game->image = $filename;
+           Storage::delete('games/'.$oldfilename);
+        }
+
         $game->save();
 
-        Session::flash('success','The Game Created successfully!');
+        Session::flash('success','The Game Updated successfully!');
 
         //redirect to another page
         return redirect()->route('game.index');

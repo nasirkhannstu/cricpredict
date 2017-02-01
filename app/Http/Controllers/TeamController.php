@@ -66,6 +66,15 @@ class TeamController extends Controller
         $team->coach = $request->coach;
         $team->desa = $request->desa;
 
+        if($request->hasFile('image')){
+           $image = $request->file('image');
+           $filename = $request->name . '-' . time() . '.' . $image->getClientOriginalExtension();
+           $location = public_path('images/games/'. $filename);
+           Image::make($image)->save($location);
+
+           $team->image = $filename;
+        }
+
         $team->save();
 
         Session::flash('success','The Team Created successfully!');
@@ -107,30 +116,41 @@ class TeamController extends Controller
     public function update(Request $request, $id)
     {
        
-        $game = Team::find($id);
-        $game->name = $request->input('name');
-        $game->pla = $request->input('pla');
-        $game->plb = $request->input('plb');
-        $game->plc = $request->input('plc');
-        $game->pld = $request->input('pld');
-        $game->ple = $request->input('ple');
-        $game->plf = $request->input('plf');
-        $game->plg = $request->input('plg');
-        $game->plh = $request->input('plh');
-        $game->pli = $request->input('pli');
-        $game->plj = $request->input('plj');
-        $game->plk = $request->input('plk');
-        $game->pll = $request->input('pll');
-        $game->plm = $request->input('plm');
-        $game->pln = $request->input('pln');
-        $game->plo = $request->input('plo');
-        $game->plp = $request->input('plp');
-        $game->plq = $request->input('plq');
-        $game->plr = $request->input('plr');
-        $game->coach = $request->input('coach');
-        $game->desa = $request->input('desa');
+        $team = Team::find($id);
+        $team->name = $request->input('name');
+        $team->pla = $request->input('pla');
+        $team->plb = $request->input('plb');
+        $team->plc = $request->input('plc');
+        $team->pld = $request->input('pld');
+        $team->ple = $request->input('ple');
+        $team->plf = $request->input('plf');
+        $team->plg = $request->input('plg');
+        $team->plh = $request->input('plh');
+        $team->pli = $request->input('pli');
+        $team->plj = $request->input('plj');
+        $team->plk = $request->input('plk');
+        $team->pll = $request->input('pll');
+        $team->plm = $request->input('plm');
+        $team->pln = $request->input('pln');
+        $team->plo = $request->input('plo');
+        $team->plp = $request->input('plp');
+        $team->plq = $request->input('plq');
+        $team->plr = $request->input('plr');
+        $team->coach = $request->input('coach');
+        $team->desa = $request->input('desa');
 
-        $game->save();
+        if($request->hasFile('image')){
+           $image = $request->file('image');
+           $filename = $request->name . '-' . time() . '.' . $image->getClientOriginalExtension();
+           $location = public_path('images/teams/'. $filename);
+           Image::make($image)->save($location);
+
+           $oldfilename = $team->image;
+           $team->image = $filename;
+           Storage::delete('teams/'.$oldfilename);
+        }
+
+        $team->save();
 
         Session::flash('success','The Team Updated successfully!');
 

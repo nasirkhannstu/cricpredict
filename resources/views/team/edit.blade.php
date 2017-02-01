@@ -7,7 +7,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Team: {{ $team->name }}</div>
             <div class="panel-body">
-                {!! Form::model($team, ['route' => ['team.update', $team->id], 'method' => 'PUT']) !!}
+                {!! Form::model($team, ['route' => ['team.update', $team->id], 'method' => 'PUT', 'files'=>true]) !!}
 
                     {{Form::label('name','Team Name:')}}
                     {{Form::text('name',null,array('class' => 'form-control','required'=>'','maxlength'=>'255'))}}

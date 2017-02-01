@@ -10,7 +10,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Create Team</div>
             <div class="panel-body">
-                {!! Form::open(array('route' => 'team.store','data-parsley-validate'=>'')) !!}
+                {!! Form::open(array('route' => 'team.store','data-parsley-validate'=>'', 'files'=>true)) !!}
 
                     {{Form::label('name','Team Name:')}}
                     {{Form::text('name',null,array('class' => 'form-control','required'=>'','maxlength'=>'255'))}}

@@ -8,7 +8,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Create Game</div>
             <div class="panel-body">
-                {!! Form::open(array('route' => 'game.store','data-parsley-validate'=>'')) !!}
+                {!! Form::open(array('route' => 'game.store','data-parsley-validate'=>'', 'files'=>true)) !!}
 
                     {{Form::label('name','Game Name:')}}
                     {{Form::text('name',null,array('class' => 'form-control','required'=>'','maxlength'=>'255'))}}
