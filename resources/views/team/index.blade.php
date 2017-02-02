@@ -1,5 +1,15 @@
 @extends('layouts.app')
+@section('style')
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
+<script type="text/javascript">
+tinymce.init({
+    selector: 'textarea',
+    plugins: "link, image",
+    menubar: false
+});
+</script>
+@endsection
 @section('content')
 <div class="container">
   @include('partials._messages')  

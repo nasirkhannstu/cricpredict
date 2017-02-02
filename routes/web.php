@@ -18,6 +18,7 @@ Route::get('/', function () {
 						//  Admin Panel Route
 Route::resource('admin/game', 'GameController');
 Route::resource('admin/team', 'TeamController');
+Route::resource('admin/stadium', 'StadiumController');
 
 
 

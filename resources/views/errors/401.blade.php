@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">401, We dont support this activity.</div>
+                <div class="title">Unauthorized Action(401).</div>
             </div>
         </div>
     </body>

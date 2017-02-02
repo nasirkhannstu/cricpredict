@@ -1,5 +1,15 @@
 @extends('layouts.app')
+@section('style')
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
+    <script type="text/javascript">
+        tinymce.init({
+            selector: 'textarea',
+            plugins: "link, image",
+            menubar: false
+        });
+    </script>
+@endsection
 @section('content')
 
 <div class="row">
@@ -32,8 +42,9 @@
                     {{Form::label('stadium_id','Stadium Name:')}}
                     <select class="form-control" name="stadium_id">
                         <option value=""></option>
-                        <option value="2">sadkj</option>
-                        <option value="3">sadkj</option>
+                        @foreach( $stadiums as $stadium)
+                        <option value="{{ $stadium->id }}">{{ $stadium->name }}</option>
+                        @endforeach
                     </select>
                     <br>
                     {{Form::label('type_id','Game Type:')}}

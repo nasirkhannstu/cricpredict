@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Game;
 use App\Team;
+use App\Stadium;
 use Session;
 use Image;
 use Storage;
@@ -21,7 +22,8 @@ class GameController extends Controller
         $games = Game::orderBy('id','desc')->paginate(20);
 
         $teams = Team::all();
-        return view('game.index')->withGames($games)->withTeams($teams);
+        $stadiums = Stadium::all();
+        return view('game.index')->withGames($games)->withTeams($teams)->withStadiums($stadiums);
     }
 
     /**
@@ -114,7 +116,12 @@ class GameController extends Controller
         foreach ( $teams as $team ){
             $tms[$team->id] = $team->name;
         }
-        return view('game.edit')->withGame($game)->withTeamsa($tms)->withTeamsb($tms);
+        $stadiums = Stadium::all();
+        $std = array();
+        foreach ( $stadiums as $stadium ){
+            $std[$stadium->id] = $stadium->name;
+        }
+        return view('game.edit')->withGame($game)->withTeams($tms)->withStadiums($std);
     }
 
     /**

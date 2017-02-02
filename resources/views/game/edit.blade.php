@@ -1,4 +1,15 @@
 @extends('layouts.app')
+@section('style')
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
+    <script type="text/javascript">
+        tinymce.init({
+            selector: 'textarea',
+            plugins: "link, image",
+            menubar: false
+        });
+    </script>
+@endsection
 @section('content')
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -9,19 +20,15 @@
 
                     {{Form::label('name','Game Name:')}}
                     {{Form::text('name',null,array('class' => 'form-control','required'=>'','maxlength'=>'255'))}}
-
+                    <br>
                     {{ Form::label('teama_id', 'Team A:') }}
-                    {{ Form::select('teama_id', $teamsa, null, ["class" => 'form-control']) }}
-
+                    {{ Form::select('teama_id', $teams, null, ["class" => 'form-control']) }}
+                    <br>
                     {{ Form::label('teamb_id', 'Team B:') }}
-                    {{ Form::select('teamb_id', $teamsb, null, ["class" => 'form-control']) }}
-
+                    {{ Form::select('teamb_id', $teams, null, ["class" => 'form-control']) }}
+                    <br>
                     {{Form::label('stadium_id','Stadium Name:')}}
-                    <select class="form-control" name="stadium_id">
-                        <option value=""></option>
-                        <option value="2">sadkj</option>
-                        <option value="3">sadkj</option>
-                    </select>
+                    {{Form::select('stadium_id',$stadiums,null,["class" => 'form-control'])}}
                     <br>
                     {{Form::label('type_id','Game Type:')}}
                     <select class="form-control" name="type_id">

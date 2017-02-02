@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Team;
 use Session;
+use Image;
+use Storage;
 
 class TeamController extends Controller
 {
@@ -69,7 +71,7 @@ class TeamController extends Controller
         if($request->hasFile('image')){
            $image = $request->file('image');
            $filename = $request->name . '-' . time() . '.' . $image->getClientOriginalExtension();
-           $location = public_path('images/games/'. $filename);
+           $location = public_path('images/teams/'. $filename);
            Image::make($image)->save($location);
 
            $team->image = $filename;
