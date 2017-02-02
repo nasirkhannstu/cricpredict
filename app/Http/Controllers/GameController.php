@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Game;
 use App\Team;
+use App\Type;
 use App\Stadium;
 use Session;
 use Image;
@@ -23,7 +24,8 @@ class GameController extends Controller
 
         $teams = Team::all();
         $stadiums = Stadium::all();
-        return view('game.index')->withGames($games)->withTeams($teams)->withStadiums($stadiums);
+        $types = Type::all();
+        return view('game.index')->withGames($games)->withTeams($teams)->withStadiums($stadiums)->withTypes($types);
     }
 
     /**
@@ -52,7 +54,6 @@ class GameController extends Controller
                 'teamb_id'    => 'integer',
                 'type_id'    => 'integer',
                 'ampaira_id'    => 'integer',
-                'coach'    => 'integer',
                 'city_id'    => 'integer',
                 'predict_id'    => 'integer',
                 'owned_id'    => 'integer',
@@ -75,7 +76,7 @@ class GameController extends Controller
 
         if($request->hasFile('image')){
            $image = $request->file('image');
-           $filename = $request->name . '-' . time() . '.' . $image->getClientOriginalExtension();
+           $filename = time() . '.' . $image->getClientOriginalExtension();
            $location = public_path('images/games/'. $filename);
            Image::make($image)->save($location);
 
@@ -121,7 +122,12 @@ class GameController extends Controller
         foreach ( $stadiums as $stadium ){
             $std[$stadium->id] = $stadium->name;
         }
-        return view('game.edit')->withGame($game)->withTeams($tms)->withStadiums($std);
+        $types = Type::all();
+        $typ = array();
+        foreach ( $types as $type ){
+            $typ[$type->id] = $type->name;
+        }
+        return view('game.edit')->withGame($game)->withTeams($tms)->withStadiums($std)->withTypes($typ);
     }
 
     /**
@@ -163,7 +169,7 @@ class GameController extends Controller
 
         if($request->hasFile('image')){
            $image = $request->file('image');
-           $filename = $request->name . '-' . time() . '.' . $image->getClientOriginalExtension();
+           $filename = time() . '.' . $image->getClientOriginalExtension();
            $location = public_path('images/games/'. $filename);
            Image::make($image)->save($location);
 

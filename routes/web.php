@@ -19,6 +19,8 @@ Route::get('/', function () {
 Route::resource('admin/game', 'GameController');
 Route::resource('admin/team', 'TeamController');
 Route::resource('admin/stadium', 'StadiumController');
+Route::resource('admin/player', 'PlayerController');
+Route::resource('admin/type', 'TypeController');
 
 
 

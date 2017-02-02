@@ -70,7 +70,7 @@ class TeamController extends Controller
 
         if($request->hasFile('image')){
            $image = $request->file('image');
-           $filename = $request->name . '-' . time() . '.' . $image->getClientOriginalExtension();
+           $filename = time() . '.' . $image->getClientOriginalExtension();
            $location = public_path('images/teams/'. $filename);
            Image::make($image)->save($location);
 
@@ -143,7 +143,7 @@ class TeamController extends Controller
 
         if($request->hasFile('image')){
            $image = $request->file('image');
-           $filename = $request->name . '-' . time() . '.' . $image->getClientOriginalExtension();
+           $filename = time() . '.' . $image->getClientOriginalExtension();
            $location = public_path('images/teams/'. $filename);
            Image::make($image)->save($location);
 

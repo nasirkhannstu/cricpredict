@@ -73,7 +73,7 @@ class StadiumController extends Controller
 
         if($request->hasFile('image')){
            $image = $request->file('image');
-           $filename = $request->name . '-' . time() . '.' . $image->getClientOriginalExtension();
+           $filename = time() . '.' . $image->getClientOriginalExtension();
            $location = public_path('images/stadium/'. $filename);
            Image::make($image)->save($location);
 
@@ -134,7 +134,7 @@ class StadiumController extends Controller
 
         if($request->hasFile('image')){
            $image = $request->file('image');
-           $filename = $request->name . '-' . time() . '.' . $image->getClientOriginalExtension();
+           $filename = time() . '.' . $image->getClientOriginalExtension();
            $location = public_path('images/stadium/'. $filename);
            Image::make($image)->save($location);
 

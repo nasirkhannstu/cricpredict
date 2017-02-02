@@ -15,6 +15,18 @@ class CreatePlayersTable extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->nullable();
+            $table->string('born')->nullable();
+            $table->string('year')->nullable();
+            $table->string('age')->nullable();
+            $table->string('type')->nullable();
+            $table->string('batstyle')->nullable();
+            $table->string('bowlstyle')->nullable();
+            $table->string('wickets')->nullable();
+            $table->string('avgrun')->nullable();
+            $table->string('matchplayed')->nullable();
+            $table->string('image')->nullable();
+            $table->text('des')->nullable();
             $table->timestamps();
         });
     }

@@ -15,61 +15,61 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-            <div class="panel-heading">Stadium Name: {{ $stadium->name }}</div>
+            <div class="panel-heading">Player Name: {{ $player->name }}</div>
             <div class="panel-body">
-                {!! Form::model($stadium, ['route' => ['stadium.update', $stadium->id], 'method' => 'PUT', 'files'=>true]) !!}
+                {!! Form::model($player, ['route' => ['player.update', $player->id], 'method' => 'PUT', 'files'=>true]) !!}
 
-                    {{Form::label('name','Stadium Name:')}}
+                    {{Form::label('name','Player Name:')}}
                     {{Form::text('name',null,array('class' => 'form-control','required'=>'','maxlength'=>'255'))}}
                     <div class="row">
                         <div class="col-md-4">
-                            {{Form::label('h1chase','First Bat: Highest Chase:')}}
-                            {{Form::text('h1chase',null,array('class' => 'form-control','maxlength'=>'255'))}}
+                            {{Form::label('born','Born:')}}
+                            {{Form::text('born',null,array('class' => 'form-control','required'=>'','maxlength'=>'255'))}}
                         </div>
                         <div class="col-md-4">
-                            {{Form::label('h2chase','Last Bat: Highest Chase:')}}
-                            {{Form::text('h2chase',null,array('class' => 'form-control','maxlength'=>'255'))}}
+                            {{Form::label('year','Born Year:')}}
+                            {{Form::text('year',null,array('class' => 'form-control','required'=>'','maxlength'=>'255'))}}
                         </div>
                         <div class="col-md-4">
-                            {{Form::label('l1chase','First Bat: Highest Chase:')}}
-                            {{Form::text('l1chase',null,array('class' => 'form-control','maxlength'=>'255'))}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            {{Form::label('l2chase','Last Bat: Lowest Chase::')}}
-                            {{Form::text('l2chase',null,array('class' => 'form-control','maxlength'=>'255'))}}
-                        </div>
-                        <div class="col-md-4">
-                            {{Form::label('location','Location:')}}
-                            {{Form::text('location',null,array('class' => 'form-control','maxlength'=>'255'))}}
-                        </div>
-                        <div class="col-md-4">
-                            {{Form::label('coord','Coordinate:')}}
-                            {{Form::text('coord',null,array('class' => 'form-control','maxlength'=>'255'))}}
+                            {{Form::label('type','Player Type:')}}
+                            <select class="form-control" name="type">
+                                <option value="Bats Man">Bat</option>
+                                <option value="Bowler">Bowl</option>
+                                <option value="All Rounder">Alrounder</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            {{Form::label('capacity','Capacity:')}}
-                            {{Form::text('capacity',null,array('class' => 'form-control','maxlength'=>'255'))}}
+                            {{Form::label('batstyle','Batting Style:')}}
+                            <select class="form-control" name="batstyle">
+                                <option value="Right Handed">Left</option>
+                                <option value="Left Handed">Right</option>
+                            </select>
                         </div>
                         <div class="col-md-4">
-                            {{Form::label('recordcap','Record Capacity:')}}
-                            {{Form::text('recordcap',null,array('class' => 'form-control','maxlength'=>'255'))}}
+                            {{Form::label('bowlstyle','Location:')}}
+                            <select class="form-control" name="bowlstyle">
+                                <option value="Right Handed">Left</option>
+                                <option value="Left Handed">Right</option>
+                            </select>
                         </div>
                         <div class="col-md-4">
-                            {{Form::label('opened','Stablished:')}}
-                            {{Form::text('opened',null,array('class' => 'form-control','maxlength'=>'255'))}}
+                            {{Form::label('wickets','Wickets:')}}
+                            {{Form::text('wickets',null,array('class' => 'form-control','required'=>'','maxlength'=>'255'))}}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            {{Form::label('fieldsize','Field Size:')}}
-                            {{Form::text('fieldsize',null,array('class' => 'form-control','maxlength'=>'255'))}}
+                            {{Form::label('avgrun','Avarage Run Rate')}}
+                            {{Form::text('avgrun',null,array('class' => 'form-control','required'=>'','maxlength'=>'255'))}}
                         </div>
                         <div class="col-md-4">
-                            {{Form::label('image','Stadium Image:')}}
+                            {{Form::label('matchplayed','Match Played')}}
+                            {{Form::text('matchplayed',null,array('class' => 'form-control','required'=>'','maxlength'=>'255'))}}
+                        </div>
+                        <div class="col-md-4">
+                            {{Form::label('image','Player Image:')}}
                             {{Form::file('image')}}
                         </div>
                     </div>
@@ -77,8 +77,7 @@
                     {{Form::textarea('des',null,array('class' => 'form-control'))}}
 
                     {{Form::submit('Update Info',array('class' => 'btn btn-success btn-lg btn-block','style'=>'margin-top:20px'))}}
-                {!! Form::close() !!}
-            </div>
+                {!! Form::close() !!}            </div>
         </div>
     </div>
 </div>
